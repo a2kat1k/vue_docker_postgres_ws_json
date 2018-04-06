@@ -1,0 +1,18 @@
+{
+  "name": "np1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error here: no test specified\" && exit 1",
+    "start": "docker run --rm -it --init -v /home/docker/projects/:/app -w /app -p 8080:8080 --name webserver node:9.9.0-alpine node server.js"
+  },
+  "author": "kirill",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "pg": "^7.4.1",
+    "ws": "^5.1.1"
+  }
+}

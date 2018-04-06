@@ -1,0 +1,30 @@
+html {
+    box-sizing : border-box;
+}
+
+*, *:before, *:after {
+    box-sizing : inherit;
+}
+
+html, body {
+    height  : 100%;
+    width   : 100%;
+    margin  : 0;
+    padding : 0;
+}
+
+body {
+    display          : flex;
+    flex-direction   : column;
+    align-items      : center;
+    justify-content  : flex-start;
+    background-color : gainsboro;
+}
+
+#app {
+    margin-top : 20vh;
+}
+
+#app input {
+    font-size : 2rem;
+}
