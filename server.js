@@ -1,4 +1,6 @@
 require('dotenv').config()
+
+
 const express = require('express')
 const http = require('http')
 const WebSocket = require('ws')
@@ -16,6 +18,8 @@ wss.on('connection', function connection(ws) {
     ws.on('message', (message) => {
         console.log('[WebSocket]', 'received', message);
         pool.query(`UPDATE student SET student=jsonb_set(student,'{name,first_name}','"${message}"',true)`);
+		
+				
     });
 
 	pool.query("select student -> 'name' ->> 'first_name' as name from student", (err, res) => {

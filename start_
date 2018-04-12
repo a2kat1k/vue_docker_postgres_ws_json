@@ -1,3 +1,6 @@
 #!/bin/bash  
 docker start my-postgres
+docker-machine ssh
+sudo mount -t vboxsf -o uid=1000,gid=50 np1 /home/docker/projects
+exit
 docker run --rm -d -it --init -v /home/docker/projects/:/app -w /app -p 8080:8080 --name webserver node:9.9.0-alpine node server.js
