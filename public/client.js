@@ -7,11 +7,13 @@ const app = new Vue({
     data: {
         message: '',
         isReady: false,
+        notes: [],
     },
     methods: {
         save(value) {
             console.log('[WebSocket]', 'send', this.message);
             ws.send(this.message);
+            this.notes.push({'note':this.message,'commentdate': new Date()})
         },
     },
 });
@@ -30,6 +32,7 @@ ws.onerror = () => {
 };
 ws.onmessage = (event) => {
     const message = event.data;
-    console.log('[WebSocket]', 'received', message);
-    app.$data.message = message;
+    app.$data.notes  =eval('(' + message + ')');
+    console.log('[WebSocket]', 'received', JSON.stringify(app.$data.notes));
+    //app.$data.message = message;
 };
