@@ -63,6 +63,7 @@ body {
   .panel-body {
     overflow-y: scroll;
     height: 80vh;
+    background-image: url(back.jpg);
   }
 
   ::-webkit-scrollbar-track {
