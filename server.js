@@ -16,11 +16,26 @@ app.use(express.static('public'));
 
 wss.on('connection', function connection(ws) {
     ws.on('message', (message) => {
-        console.log('[WebSocket]', 'received', message);
-        pool.query(`insert into "Notes" (id, note, creation_date) values (default,'${message}', current_timestamp)`,(err, res) => {
-		});
-		
-				
+        var mess = JSON.parse(message);
+        if(mess.action == "save"){
+            pool.query(
+                {
+                    text: 'insert into "Notes" (id, note, creation_date) values ($1, $2, current_timestamp)',
+                    values: [mess.id,mess.message]
+                },(err, res) => {
+
+            });
+        }
+        if(mess.action == "delete"){
+            pool.query(
+                {
+                    text: 'delete from "Notes" where id = $1',
+                    values: [mess.id]
+                }, (err, res) => {
+
+            });
+        }
+        console.log('[WebSocket]', 'received', mess);				
     });
 
 	pool.query(`select array_to_json(array_agg(row_to_json(t))) as json from (

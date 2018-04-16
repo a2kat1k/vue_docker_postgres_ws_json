@@ -19,7 +19,7 @@
             <div>
               <div class="panel-body">
                 <ul class="chat">
-                  <li class="left clearfix" v-for="note in notes">
+                  <li class="left clearfix" v-for="(note,index) in notes" :key="note.id">
                     <span class="chat-img pull-left">
                       <img src="./kirill.jpg" alt="User Avatar" class="img-circle" />
                     </span>
@@ -27,7 +27,10 @@
                       <div class="header">
                         <strong class="primary-font">Кирилл Климук</strong>
                         <small class="pull-right text-muted">
-                          <span class="glyphicon glyphicon-time"></span>{{ note.commentdate }}</small>
+                          <span class="glyphicon glyphicon-time"></span>{{ note.commentdate }}
+                          <span class="glyphicon glyphicon-remove" v-on:click="delete_note(index)" style="color:#ff00007d;margin-left: 7px;"></span>
+                        </small>
+                          
                       </div>
                       <p>
                         {{ note.note }}
@@ -38,7 +41,7 @@
               </div>
               <div class="panel-footer">
                
-                  <input v-model="message" @keydown.enter="save" :disabled="!isReady" class="form-control" style="100vh" placeholder="новая заметка..." />
+                  <input v-model="message" @keydown.enter="save" :disabled="!isReady" class="form-control" style="width:100vh" placeholder="новая заметка..." />
                 
               </div>
             </div>
