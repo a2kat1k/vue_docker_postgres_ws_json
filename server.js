@@ -23,7 +23,7 @@ wss.on('connection', function connection(ws) {
                     text: 'insert into "Notes" (id, note, creation_date) values ($1, $2, current_timestamp)',
                     values: [mess.id,mess.message]
                 },(err, res) => {
-
+                    console.log(err);
             });
         }
         if(mess.action == "delete"){
