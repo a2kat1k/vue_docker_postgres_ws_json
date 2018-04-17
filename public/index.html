@@ -25,24 +25,23 @@
                     </span>
                     <div class="chat-body clearfix">
                       <div class="header">
-                        <strong class="primary-font">Кирилл Климук</strong>
                         <small class="pull-right text-muted">
                           <span class="glyphicon glyphicon-time"></span>{{ note.commentdate }}
                           <span class="glyphicon glyphicon-remove" v-on:click="delete_note(index)" style="color:#ff00007d;margin-left: 7px;"></span>
                         </small>
-                          
                       </div>
-                      <p>
+                      <div class="bubble me">
                         {{ note.note }}
-                      </p>
+                      </div>
                     </div>
                   </li>
                 </ul>
               </div>
               <div class="panel-footer">
-               
-                  <input v-model="message" @keydown.enter="save" :disabled="!isReady" class="form-control" style="width:100vh" placeholder="новая заметка..." />
-                
+
+                <input v-model="message" @keydown.enter="save" :disabled="!isReady" class="form-control" style="width:100%" placeholder="новая заметка..."
+                />
+
               </div>
             </div>
           </div>
@@ -53,7 +52,7 @@
   </div>
 
 
-<script src="client.js"></script>
+  <script src="client.js"></script>
 </body>
 
 </html>
