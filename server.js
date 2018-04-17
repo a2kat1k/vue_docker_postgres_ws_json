@@ -15,7 +15,7 @@ const client_seecret = 'rwUBryJiHxxqoNARgRNj';
 const redirect_uri = 'http://a2kat.crabdance.com:8081/vklogin';
 var access_token;
 var email;
-var user_id;
+var user_id='';
 
 
 
@@ -24,7 +24,7 @@ var user_id;
 
 function loadUser(req, res, next) {
     console.log("here we are");
-    if (user_id != '') {
+    if (user_id.length > 0) {
         app.use(express.static('public'));
         res.redirect('/index.html');
     } else {
