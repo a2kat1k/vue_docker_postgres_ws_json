@@ -20,11 +20,13 @@ app.use(express.static('public'));
 
 app.get('/vklogin', function (req, res) {
     console.log(req.query.code);
-    https.get(`https://oauth.vk.com/access_token?
-                client_id=${client_id}&
-                client_secret=${client_seecret}&
-                redirect_uri=${redirect_uri}&
-                code=${req.query.code}`,
+    var query = `https://oauth.vk.com/access_token?
+    client_id=${client_id}&
+    client_secret=${client_seecret}&
+    redirect_uri=${redirect_uri}&
+    code=${req.query.code}`;
+    console.log(query);
+    https.get(query,
         (responce) => {
             responce.setEncoding('utf8');
 
@@ -48,6 +50,10 @@ app.get('/vklogin', function (req, res) {
                 console.log(`${access_token} ${email}`);
                 res.send(`Привет ${email}`);
             });
+        }).on('error', function(err) {
+            // handle errors with the request itself
+            console.error('Error with the request:', err.message);
+            cb(err);
         });
     //res.send('This is not implemented now');
 });
