@@ -3,21 +3,30 @@ require('dotenv').config()
 
 const express = require('express')
 const http = require('http')
+const https = require('https')
 const WebSocket = require('ws')
 const { Pool } = require('pg')
 const pool = new Pool()
-
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
+const client_id = 4571390;
+const client_seecret = 'rwUBryJiHxxqoNARgRNj';
+const redirect_uri = 'http://a2kat.crabdance.com:8081/vklogin';
 
 app.use(express.static('public'));
 
 app.get('/vklogin', function(req, res) {
-    
     console.log(req.query.code);
-
-    res.send('This is not implemented now');
+    https.get(`https://oauth.vk.com/access_token?
+                client_id=${client_id}&
+                client_secret=${client_seecret}&
+                redirect_uri=${redirect_uri}&
+                code=${req.query.code}`,
+     (resp) => {
+        console.log("resp = %o",resp);
+     });
+    //res.send('This is not implemented now');
 });
 
 wss.on('connection', function connection(ws) {
