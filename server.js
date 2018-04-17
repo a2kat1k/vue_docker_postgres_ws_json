@@ -38,6 +38,7 @@ app.get('/vklogin', function (req, res) {
             responce.on('end', function () {
                 try {
                     var parsed = JSON.parse(body);
+                    console.log("parse access %o", parsed);
                 } catch (err) {
                     console.error('Unable to parse response as JSON', err);
                     res.send(err);
