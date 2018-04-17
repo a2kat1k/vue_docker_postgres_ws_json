@@ -32,7 +32,7 @@ function loadUser(req, res, next) {
   }
   
   app.get('/', loadUser, function(req, res) {
-    
+    console.log("fuck it!");
   });
 
 app.get('/vklogin', function (req, res) {
