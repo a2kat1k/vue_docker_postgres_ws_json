@@ -15,8 +15,25 @@ const client_seecret = 'rwUBryJiHxxqoNARgRNj';
 const redirect_uri = 'http://a2kat.crabdance.com:8081/vklogin';
 var access_token;
 var email;
+var user_id;
 
 app.use(express.static('public'));
+
+//app.use(express.cookieDecoder());
+//app.use(express.session());
+
+function loadUser(req, res, next) {
+    console.log("here we are");
+    if (user_id != '') {
+        res.redirect('/index.html');
+    } else {
+      res.redirect('/welcome.html');
+    }
+  }
+  
+  app.get('/', loadUser, function(req, res) {
+    
+  });
 
 app.get('/vklogin', function (req, res) {
     console.log(req.query.code);
@@ -43,7 +60,8 @@ app.get('/vklogin', function (req, res) {
                 }
                 access_token =  parsed.access_token;
                 email = parsed.email;
-                console.log(`${access_token} ${email}`);
+                user_id = parsed.user_id;
+                console.log(`${access_token} ${email} ${user_id}`);
                 res.send(`Привет ${email}`);
             });
         }).on('error', function(err) {
