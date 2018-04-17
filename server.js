@@ -14,9 +14,9 @@ const wss = new WebSocket.Server({ server });
 app.use(express.static('public'));
 
 app.get('/vklogin', function(req, res) {
-    console.log(req);
-    console.log(res);
-    console.log("objext %o", req);
+    
+    console.log(req.code);
+
     res.send('This is not implemented now');
 });
 
