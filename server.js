@@ -15,7 +15,7 @@ app.use(express.static('public'));
 
 app.get('/vklogin', function(req, res) {
     
-    console.log(req.code);
+    console.log(req.query.code);
 
     res.send('This is not implemented now');
 });
