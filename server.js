@@ -64,7 +64,7 @@ app.get('/vklogin', function (req, res) {
                 email = parsed.email;
                 user_id = parsed.user_id;
                 console.log(`${access_token} ${email} ${user_id}`);
-                res.send(`Привет ${email}`);
+                res.redirect('/index.html');
             });
         }).on('error', function(err) {
             // handle errors with the request itself
@@ -80,8 +80,8 @@ wss.on('connection', function connection(ws) {
         if (mess.action == "save") {
             pool.query(
                 {
-                    text: 'insert into "Notes" (id, note, creation_date) values ($1, $2, current_timestamp)',
-                    values: [mess.id, mess.message]
+                    text: 'insert into "Notes" (id, note, creation_date, user_id) values ($1, $2, current_timestamp,$3)',
+                    values: [mess.id, mess.message, user_id]
                 }, (err, res) => {
                     console.log(err);
                 });
@@ -99,7 +99,7 @@ wss.on('connection', function connection(ws) {
     });
 
     pool.query(`select array_to_json(array_agg(row_to_json(t))) as json from (
-		select id, note, to_char(creation_date,'FMDay, FMDD Mon HH12:MI:SS') as commentDate from "Notes") t`, (err, res) => {
+		select id, note, to_char(creation_date,'FMDay, FMDD Mon HH12:MI:SS') as commentDate from "Notes" where user_id = '${user_id}') t`, (err, res) => {
             var arr = res.rows[0].json;
             if (IsJsonArray(arr)) {
                 console.log('[WebSocket]', 'send', JSON.stringify(arr));
