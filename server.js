@@ -23,8 +23,10 @@ app.get('/vklogin', function(req, res) {
                 client_secret=${client_seecret}&
                 redirect_uri=${redirect_uri}&
                 code=${req.query.code}`,
-     (resp) => {
-        console.log("resp = %o",resp);
+     (res) => {
+        res.on('data', function(chunk){
+            console.log(chunk);
+        });
      });
     //res.send('This is not implemented now');
 });
