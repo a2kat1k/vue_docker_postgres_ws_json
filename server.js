@@ -17,7 +17,7 @@ var access_token;
 var email;
 var user_id;
 
-app.use(express.static('public'));
+
 
 //app.use(express.cookieDecoder());
 //app.use(express.session());
@@ -25,9 +25,11 @@ app.use(express.static('public'));
 function loadUser(req, res, next) {
     console.log("here we are");
     if (user_id != '') {
+        app.use(express.static('public'));
         res.redirect('/index.html');
     } else {
-      res.redirect('/welcome.html');
+        app.use(express.static('public'));
+        res.redirect('/welcome.html');
     }
   }
   
