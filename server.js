@@ -12,14 +12,14 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 app.use(express.static('public'));
-/*
+
 app.get('/vklogin', function(req, res) {
     console.log(req);
     console.log(res);
     console.log("objext %o", req);
     res.send('This is not implemented now');
 });
-*/
+
 wss.on('connection', function connection(ws) {
     ws.on('message', (message) => {
         var mess = JSON.parse(message);
