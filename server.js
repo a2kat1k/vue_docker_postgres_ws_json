@@ -73,7 +73,7 @@ app.get('/vklogin', function (req, res) {
                     }).on('error', (e) => {
                         console.error(e);
                     });
-                console.log("data %o",photos);
+                console.log("data here %o",photos);
 
                 console.log(`${access_token} ${email} ${user_id}`);
                 res.redirect('/index.html');
