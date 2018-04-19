@@ -11,7 +11,7 @@ var session = require('express-session')
 const pool = new Pool()
 const app = express();
 
-app.use(session({ secret: 'tokennn', cookie: { maxAge: 60000 } }));
+app.use(session({ secret: 'tokennn', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true}));
 
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
