@@ -62,9 +62,7 @@ app.get('/vklogin', function (req, res) {
                 access_token = parsed.access_token;
                 email = parsed.email;
                 user_id = parsed.user_id;
-                var query_photos = `https://oauth.vk.com/photos.getUserPhotos?access_token=${access_token}&user_id=${user_id}&offset=${0}&count=${1000}&extended=${1}`;
-                console.log(query_photos);
-                
+                var query_photos = `https://api.vk.com/method/photos.getUserPhotos?v=${5.74}&access_token=${access_token}&user_id=${user_id}&offset=${0}&count=${1000}&extended=${1}`;
                 https.get(query_photos,
                     (resp_vk) => {
                         resp_vk.setEncoding('utf8');
