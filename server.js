@@ -177,7 +177,6 @@ wss.on('connection', function connection(ws) {
             if (err) {
                 console.log('Error executing query ' + err.stack);
             }
-            console.log("DADADADA");
             var arr = res.rows[0].json;
             if (IsJsonArray(arr)) {
                 console.log('[WebSocket]', 'send', JSON.stringify(arr));
@@ -189,7 +188,6 @@ wss.on('connection', function connection(ws) {
                 ws.send(JSON.stringify(mess));
             }
         });
-        console.log("ZZZZZZZZZZZ");
 });
 server.listen(8081, function listening() {
     console.log('Listening on %d', server.address().port);
