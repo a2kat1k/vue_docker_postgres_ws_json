@@ -24,8 +24,9 @@ var user_id = '';
 var photos;
 var ava;
 
+var exampleRouter = express.Router();
 // Access the session as req.session
-app.get(['/','index.html'], function (req, res, next) {
+exampleRouter.get(['/','index.html'], function (req, res, next) {
     app.use(express.static('public'));
     var sessData = req.session;
     //res.redirect('/index.html');
