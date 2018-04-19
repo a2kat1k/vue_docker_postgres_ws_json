@@ -172,11 +172,9 @@ wss.on('connection', function connection(ws) {
         console.log('[WebSocket]', 'received', mess);
     });
     console.log("before query " + user_id);
-    pool.query(`select array_to_json(array_agg(row_to_json(t))) as json from (
-		select id, note, to_char(creation_date,'FMDay, FMDD Mon HH12:MI:SS') as commentDate from "Notes" where user_id = '${user_id}') t`, (err, res) => {
-            if (err) {
-                console.error('Error executing query', err.stack);
-            }
+    try {
+        const res = await pool.query(`select array_to_json(array_agg(row_to_json(t))) as json from (
+            select id, note, to_char(creation_date,'FMDay, FMDD Mon HH12:MI:SS') as commentDate from "Notes" where user_id = '${user_id}') t`);
             console.log("DADADADA");
             var arr = res.rows[0].json;
             if (IsJsonArray(arr)) {
@@ -188,7 +186,10 @@ wss.on('connection', function connection(ws) {
                 console.log("sended " + JSON.stringify(mess));
                 ws.send(JSON.stringify(mess));
             }
-        });
+      } catch(err) {
+        console.log(err.stack)
+      }
+
         console.log("ZZZZZZZZZZZ");
 });
 server.listen(8081, function listening() {
