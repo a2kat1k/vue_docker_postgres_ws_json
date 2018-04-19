@@ -95,7 +95,8 @@ app.get('/vklogin', function (req, res) {
                             console.error(e);
                         });
                 res.cookie('photos', JSON.stringify(body_resp));
-                res.cookie('ava', JSON.stringify(bdy));
+                //res.cookie('ava', JSON.stringify(bdy));
+                res.cookie('ava', "dada");
                // console.log(`${access_token} ${email} ${user_id}`);
                 res.redirect('/index.html');
             });
