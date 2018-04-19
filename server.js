@@ -20,6 +20,7 @@ const client_id = 4571390;
 const client_seecret = 'rwUBryJiHxxqoNARgRNj';
 const redirect_uri = 'http://a2kat.crabdance.com:8081/vklogin';
 var user_id = '';
+//var user_id = 3753918;
 var photos;
 var ava;
 
@@ -27,6 +28,7 @@ var ava;
 app.get('/', function (req, res, next) {
     app.use(express.static('public'));
     var sessData = req.session;
+    //res.redirect('/index.html');
     if (typeof sessData.user_id !== 'undefined') {
         res.redirect('/index.html');
     } else {
@@ -49,6 +51,7 @@ app.get('/', loadUser, function (req, res) {
     console.log("fuck it!");
 });
 */
+/*
 app.get('/ava', function (req, res, next) {
     if (typeof req.session.user_id !== 'undefined') {
         res.json(req.session.ava);
@@ -59,6 +62,7 @@ app.get('/photos', function (req, res, next) {
         res.json(req.session.photos);
     }
 });
+*/
 
 app.get('/vklogin', function (req, res) {
     console.log(req.query.code);

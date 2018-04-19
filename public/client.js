@@ -53,11 +53,12 @@ ws.onmessage = (event) => {
 
     switch (mess.action) {
         case "notes":
-            console.log("received notes:" + mess.notes);
-            app.$data.notes = eval('(' + mess.notes + ')');
+            console.log("received notes:" + JSON.stringify(mess.notes));
+            app.$data.notes = eval('(' + JSON.stringify(mess.notes) + ')');
             ws.send({ action: "ava" });
         case "ava":
-        app.$data.avatar = mess.ava;
+        console.log("received avatar:" + JSON.stringify(mess.ava));
+        app.$data.avatar = JSON.stringify(mess.ava);
     }
 
 
