@@ -21,7 +21,7 @@
                 <ul class="chat">
                   <li class="left clearfix" v-for="(note,index) in notes" :key="note.id">
                     <span class="chat-img pull-left">
-                      <img v-attr="src: avatar" alt="User Avatar" class="img-circle" />
+                      <img :src="avatar" alt="User Avatar" class="img-circle" />
                     </span>
                     <div class="chat-body clearfix">
                       <div class="header">
