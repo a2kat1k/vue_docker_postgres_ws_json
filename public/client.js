@@ -48,6 +48,7 @@ ws.onerror = () => {
     app.$data.isReady = false;
 };
 ws.onmessage = (event) => {
+    console.log("we reseiced from ws " + event.data);
     const message = event.data;
     var mess = JSON.parse(message);
 
