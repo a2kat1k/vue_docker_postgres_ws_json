@@ -175,10 +175,10 @@ wss.on('connection', function connection(ws) {
     pool.query(`select array_to_json(array_agg(row_to_json(t))) as json from (
 		select id, note, to_char(creation_date,'FMDay, FMDD Mon HH12:MI:SS') as commentDate from "Notes" where user_id = '${user_id}') t`, (err, res) => {
             if (err) {
-                console.log('Error executing query');
+                console.log('Error executing query ' + err.stack);
             }
             console.log("DADADADA");
-            var arr = res.rows[0].json;
+            /*var arr = res.rows[0].json;
             if (IsJsonArray(arr)) {
                 console.log('[WebSocket]', 'send', JSON.stringify(arr));
                 var mess = {
@@ -187,7 +187,7 @@ wss.on('connection', function connection(ws) {
                 }
                 console.log("sended " + JSON.stringify(mess));
                 ws.send(JSON.stringify(mess));
-            }
+            }*/
         });
         console.log("ZZZZZZZZZZZ");
 });
