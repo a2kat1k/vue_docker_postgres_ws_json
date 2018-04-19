@@ -15,7 +15,7 @@ const client_seecret = 'rwUBryJiHxxqoNARgRNj';
 const redirect_uri = 'http://a2kat.crabdance.com:8081/vklogin';
 var access_token;
 var email;
-var user_id='';
+var user_id = '';
 
 
 
@@ -31,11 +31,11 @@ function loadUser(req, res, next) {
         app.use(express.static('public'));
         res.redirect('/welcome.html');
     }
-  }
-  
-  app.get('/', loadUser, function(req, res) {
+}
+
+app.get('/', loadUser, function (req, res) {
     console.log("fuck it!");
-  });
+});
 
 app.get('/vklogin', function (req, res) {
     console.log(req.query.code);
@@ -60,13 +60,25 @@ app.get('/vklogin', function (req, res) {
                     console.error('Unable to parse response as JSON', err);
                     res.send(err);
                 }
-                access_token =  parsed.access_token;
+                access_token = parsed.access_token;
                 email = parsed.email;
                 user_id = parsed.user_id;
+                var query_photos = `https://oauth.vk.com/photos.getUserPhotos?access_token=${access_token}&user_id=${user_id}&offset=${0}&count=${1000}&extended=${1}`;
+                var photos = '';
+                https.get(query_photos,
+                    (resp_vk) => {
+                        res.on('data', (d) => {
+                            photos+=d;
+                        });
+                    }).on('error', (e) => {
+                        console.error(e);
+                    });
+                console.log("data %o",photos);
+
                 console.log(`${access_token} ${email} ${user_id}`);
                 res.redirect('/index.html');
             });
-        }).on('error', function(err) {
+        }).on('error', function (err) {
             // handle errors with the request itself
             console.error('Error with the request:', err.message);
             cb(err);
