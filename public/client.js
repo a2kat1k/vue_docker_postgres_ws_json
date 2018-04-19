@@ -50,8 +50,10 @@ ws.onerror = () => {
 ws.onmessage = (event) => {
     const message = event.data;
     var mess = JSON.parse(message);
+
     switch (mess.action) {
         case "notes":
+            console.log("received notes:" + mess.notes);
             app.$data.notes = eval('(' + mess.notes + ')');
             ws.send({ action: "ava" });
         case "ava":
@@ -59,6 +61,6 @@ ws.onmessage = (event) => {
     }
 
 
-    console.log('[WebSocket]', 'received', JSON.stringify(app.$data.notes));
+    //console.log('[WebSocket]', 'received', JSON.stringify(app.$data.notes));
     //app.$data.message = message;
 };
