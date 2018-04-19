@@ -11,7 +11,7 @@ var session = require('express-session')
 const pool = new Pool()
 const app = express();
 
-app.use(session({ secret: 'tokennn', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true}));
+app.use(session({ secret: 'tokennn', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
 
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -135,6 +135,7 @@ app.get('/vklogin', function (req, res) {
 });
 
 wss.on('connection', function connection(ws) {
+    console.log("ws connection opened");
     ws.on('message', (message) => {
         var mess = JSON.parse(message);
         switch (mess.action) {
@@ -155,7 +156,7 @@ wss.on('connection', function connection(ws) {
 
                     });
             case "ava":
-            console.log("requested AVA " + JSON.stringify(ava));
+                console.log("requested AVA " + JSON.stringify(ava));
                 var mess = {
                     action: "ava",
                     ava: ava
@@ -169,6 +170,10 @@ wss.on('connection', function connection(ws) {
 
     pool.query(`select array_to_json(array_agg(row_to_json(t))) as json from (
 		select id, note, to_char(creation_date,'FMDay, FMDD Mon HH12:MI:SS') as commentDate from "Notes" where user_id = '${user_id}') t`, (err, res) => {
+            if (err) {
+                console.error('Error executing query', err.stack);
+            }
+            console.log("DADADADA");
             var arr = res.rows[0].json;
             if (IsJsonArray(arr)) {
                 console.log('[WebSocket]', 'send', JSON.stringify(arr));
