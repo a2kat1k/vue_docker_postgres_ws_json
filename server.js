@@ -25,7 +25,7 @@ var user_id = '';
 //app.use(express.session());
 
 function loadUser(req, res, next) {
-    console.log("here we are");
+   // console.log("here we are");
     if (user_id.length > 0) {
         app.use(express.static('public'));
         res.redirect('/index.html');
@@ -65,6 +65,7 @@ app.get('/vklogin', function (req, res) {
                 email = parsed.email;
                 user_id = parsed.user_id;
                 var query_photos = `https://api.vk.com/method/photos.getUserPhotos?v=${5.74}&access_token=${access_token}&user_id=${user_id}&offset=${0}&count=${1000}&extended=${1}`;
+                var body_resp;
                 https.get(query_photos,
                     (resp_vk) => {
                         resp_vk.setEncoding('utf8');
@@ -73,14 +74,30 @@ app.get('/vklogin', function (req, res) {
                             photos += dd;
                         });
                         resp_vk.on("end", () => {
-                            var body_resp = JSON.parse(photos);
-                            console.log("photos "+ JSON.stringify(body_resp));
+                            body_resp = JSON.parse(photos);
+                            //console.log("photos "+ JSON.stringify(body_resp));
                         });
                     }).on('error', (e) => {
                         console.error(e);
                     });
-                res.cookie('cookie_name', 'cookie_value');
-                console.log(`${access_token} ${email} ${user_id}`);
+                    var bdy;
+                    https.get(`https://api.vk.com/method/users.get?v=${5.74}&access_token=${access_token}&user_ids=${user_id}&name_case=nom&fields=photo_200`,
+                        (resp_vk2) => {
+                            resp_vk2.setEncoding('utf8');
+                            var photo = '';
+                            resp_vk2.on('data', (d) => {
+                                photo += d;
+                            });
+                            resp_vk2.on("end", () => {
+                                bdy = JSON.parse(photo);
+                                //console.log("photos "+ JSON.stringify(body_resp));
+                            });
+                        }).on('error', (e) => {
+                            console.error(e);
+                        });
+                res.cookie('photos', body_resp);
+                res.cookie('ava', bdy);
+               // console.log(`${access_token} ${email} ${user_id}`);
                 res.redirect('/index.html');
             });
         }).on('error', function (err) {
