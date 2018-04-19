@@ -6,8 +6,10 @@ const http = require('http')
 const https = require('https')
 const WebSocket = require('ws')
 const { Pool } = require('pg')
+var cookieParser = require('cookie-parser');
 const pool = new Pool()
 const app = express();
+app.use(cookieParser());
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 const client_id = 4571390;
@@ -77,7 +79,7 @@ app.get('/vklogin', function (req, res) {
                     }).on('error', (e) => {
                         console.error(e);
                     });
-
+                res.cookie(cookie_name , 'cookie_value').send('Cookie is set');
                 console.log(`${access_token} ${email} ${user_id}`);
                 res.redirect('/index.html');
             });
