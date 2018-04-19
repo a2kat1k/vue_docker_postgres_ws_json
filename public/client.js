@@ -8,26 +8,27 @@ const app = new Vue({
         message: '',
         isReady: false,
         notes: [],
+        avatar: './kirill.jpg'
     },
     methods: {
         save(value) {
-            var id = Math.floor(Math.random() * (  10000000 - 5000000)) + 5000000;
+            var id = Math.floor(Math.random() * (10000000 - 5000000)) + 5000000;
             console.log('[WebSocket]', 'send', this.message);
             var mess = {
-                action : "save",
-                message : this.message,
-                id : id
+                action: "save",
+                message: this.message,
+                id: id
             }
             ws.send(JSON.stringify(mess));
-            this.notes.push({'note':this.message,'commentdate': new Date(),'id' : id });
+            this.notes.push({ 'note': this.message, 'commentdate': new Date(), 'id': id });
             this.message = '';
         },
-        delete_note: function (index){
+        delete_note: function (index) {
             const itemId = this.notes[index].id;
             this.notes.splice(index, 1);
             var mess = {
-                action : "delete",
-                id : itemId
+                action: "delete",
+                id: itemId
             }
             ws.send(JSON.stringify(mess));
         }
@@ -48,7 +49,16 @@ ws.onerror = () => {
 };
 ws.onmessage = (event) => {
     const message = event.data;
-    app.$data.notes  =eval('(' + message + ')');
+    var mess = JSON.parse(message);
+    switch (mess.action) {
+        case "notes":
+            app.$data.notes = eval('(' + mess.notes + ')');
+            ws.send({ action: "ava" });
+        case "ava":
+        app.$data.avatar = mess.ava;
+    }
+
+
     console.log('[WebSocket]', 'received', JSON.stringify(app.$data.notes));
     //app.$data.message = message;
 };
