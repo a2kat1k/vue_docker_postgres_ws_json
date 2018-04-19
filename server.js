@@ -79,7 +79,7 @@ app.get('/vklogin', function (req, res) {
                     }).on('error', (e) => {
                         console.error(e);
                     });
-                res.cookie('cookie_name', 'cookie_value').send('Cookie is set');
+                res.cookie('cookie_name', 'cookie_value');
                 console.log(`${access_token} ${email} ${user_id}`);
                 res.redirect('/index.html');
             });
