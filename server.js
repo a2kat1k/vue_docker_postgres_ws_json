@@ -89,13 +89,14 @@ app.get('/vklogin', function (req, res) {
                             });
                             resp_vk2.on("end", () => {
                                 bdy = JSON.parse(photo);
-                                console.log("ava "+ JSON.stringify(bdy));
+                                //console.log("ava "+ JSON.stringify(bdy));
                             });
                         }).on('error', (e) => {
                             console.error(e);
                         });
                 res.cookie('photos', JSON.stringify(body_resp));
                 //res.cookie('ava', JSON.stringify(bdy));
+                console.log("ava "+ JSON.stringify(bdy));
                 res.cookie('ava', `{"response":[{"id":3753918,"first_name":"Кирилл","last_name":"Климук","photo_200":"https://pp.userapi.com/c637920/v637920676/67bd7/1ki9Bhxmq30.jpg"}]}`);
                // console.log(`${access_token} ${email} ${user_id}`);
                 res.redirect('/index.html');
