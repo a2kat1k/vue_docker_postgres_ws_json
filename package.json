@@ -10,6 +10,7 @@
   "author": "kirill",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "dotenv": "^5.0.1",
     "es6-promise": "^4.2.4",
     "express": "^4.16.3",
