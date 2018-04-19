@@ -25,7 +25,7 @@ var photos;
 var ava;
 
 // Access the session as req.session
-app.get('/', function (req, res, next) {
+app.get(['/','index.html'], function (req, res, next) {
     app.use(express.static('public'));
     var sessData = req.session;
     //res.redirect('/index.html');
