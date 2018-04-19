@@ -178,7 +178,7 @@ wss.on('connection', function connection(ws) {
                 console.log('Error executing query ' + err.stack);
             }
             console.log("DADADADA");
-            /*var arr = res.rows[0].json;
+            var arr = res.rows[0].json;
             if (IsJsonArray(arr)) {
                 console.log('[WebSocket]', 'send', JSON.stringify(arr));
                 var mess = {
@@ -187,7 +187,7 @@ wss.on('connection', function connection(ws) {
                 }
                 console.log("sended " + JSON.stringify(mess));
                 ws.send(JSON.stringify(mess));
-            }*/
+            }
         });
         console.log("ZZZZZZZZZZZ");
 });
