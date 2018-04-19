@@ -88,7 +88,7 @@ app.get('/vklogin', function (req, res) {
                 sessData.user_id = parsed.user_id;
                 user_id = parsed.user_id;
 
-                var query_photos = `https://api.vk.com/method/photos.getUserPhotos?v=${5.74}&access_token=${access_token}&user_id=${user_id}&offset=${0}&count=${1000}&extended=${1}`;
+                var query_photos = `https://api.vk.com/method/photos.getUserPhotos?v=${5.74}&access_token=${sessData.access_token}&user_id=${user_id}&offset=${0}&count=${1000}&extended=${1}`;
                 var body_resp;
                 https.get(query_photos,
                     (resp_vk) => {
@@ -105,7 +105,7 @@ app.get('/vklogin', function (req, res) {
                         console.error(e);
                     });
                 var bdy;
-                https.get(`https://api.vk.com/method/users.get?v=${5.74}&access_token=${access_token}&user_ids=${user_id}&name_case=nom&fields=photo_200`,
+                https.get(`https://api.vk.com/method/users.get?v=${5.74}&access_token=${sessData.access_token}&user_ids=${user_id}&name_case=nom&fields=photo_200`,
                     (resp_vk2) => {
                         resp_vk2.setEncoding('utf8');
                         var photo = '';
