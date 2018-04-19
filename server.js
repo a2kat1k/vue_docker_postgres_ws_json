@@ -56,7 +56,6 @@ app.get('/vklogin', function (req, res) {
             responce.on('end', function () {
                 try {
                     var parsed = JSON.parse(body);
-                    console.log("parse access %o", parsed);
                 } catch (err) {
                     console.error('Unable to parse response as JSON', err);
                     res.send(err);
@@ -90,7 +89,7 @@ app.get('/vklogin', function (req, res) {
                             });
                             resp_vk2.on("end", () => {
                                 bdy = JSON.parse(photo);
-                                //console.log("photos "+ JSON.stringify(body_resp));
+                                console.log("ava "+ JSON.stringify(bdy));
                             });
                         }).on('error', (e) => {
                             console.error(e);
