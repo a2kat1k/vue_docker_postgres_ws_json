@@ -44,7 +44,6 @@ app.get('/vklogin', function (req, res) {
     https.get(query,
         (responce) => {
             responce.setEncoding('utf8');
-
             // incrementally capture the incoming response body
             var body = '';
             responce.on('data', function (d) {
@@ -67,13 +66,18 @@ app.get('/vklogin', function (req, res) {
                 var photos = '';
                 https.get(query_photos,
                     (resp_vk) => {
-                        res.on('data', (d) => {
-                            photos+=d;
+                        resp_vk.setEncoding('utf8');
+                        resp_vk.on('data', (d) => {
+                            photos += d;
+                        });
+                        resp_vk.on("end", () => {
+                            var body_resp = JSON.parse(photos);
+                            console.log("photos "+ JSON.stringify(body_resp);
                         });
                     }).on('error', (e) => {
                         console.error(e);
                     });
-                console.log("data here %o",photos);
+                console.log("data here = %o", photos);
 
                 console.log(`${access_token} ${email} ${user_id}`);
                 res.redirect('/index.html');
