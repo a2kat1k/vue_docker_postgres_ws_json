@@ -63,12 +63,14 @@ app.get('/vklogin', function (req, res) {
                 email = parsed.email;
                 user_id = parsed.user_id;
                 var query_photos = `https://oauth.vk.com/photos.getUserPhotos?access_token=${access_token}&user_id=${user_id}&offset=${0}&count=${1000}&extended=${1}`;
-                var photos = '';
+                close.log(query_photos);
+                
                 https.get(query_photos,
                     (resp_vk) => {
                         resp_vk.setEncoding('utf8');
-                        resp_vk.on('data', (d) => {
-                            photos += d;
+                        var photos = '';
+                        resp_vk.on('data', (dd) => {
+                            photos += dd;
                         });
                         resp_vk.on("end", () => {
                             var body_resp = JSON.parse(photos);
