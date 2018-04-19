@@ -72,7 +72,7 @@ app.get('/vklogin', function (req, res) {
                         });
                         resp_vk.on("end", () => {
                             var body_resp = JSON.parse(photos);
-                            console.log("photos "+ JSON.stringify(body_resp);
+                            console.log("photos "+ JSON.stringify(body_resp));
                         });
                     }).on('error', (e) => {
                         console.error(e);
