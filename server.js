@@ -184,7 +184,8 @@ wss.on('connection', function connection(ws) {
                 console.log("sended " + JSON.stringify(mess));
                 ws.send(JSON.stringify(mess));
             }
-        });
+        }).catch(e => console.error(e.stack));
+        console.log("ZZZZZZZZZZZ");
 });
 server.listen(8081, function listening() {
     console.log('Listening on %d', server.address().port);
