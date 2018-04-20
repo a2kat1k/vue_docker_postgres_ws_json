@@ -24,18 +24,18 @@ var user_id = '';
 var photos;
 var ava;
 
-var exampleRouter = app.Router();
+var router = express.Router();
+app.use(express.static('public'));
 // Access the session as req.session
-exampleRouter.get(['/','index.html'], function (req, res) {
-    app.use(express.static('public'));
+router.get(['/index.html','/'], function (req, res, next) {
     var sessData = req.session;
-    //res.redirect('/index.html');
     if (typeof sessData.user_id !== 'undefined') {
         res.redirect('/index.html');
     } else {
         res.redirect('/welcome.html');
     }
 });
+app.use(router);
 /*
 function loadUser(req, res, next) {
     // console.log("here we are");

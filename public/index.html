@@ -8,6 +8,42 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link rel="stylesheet" href="style.css" />
+
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyD-c_p5izZqh5uDBIzq5-i_QBJt-OD4qNI",
+      authDomain: "notes-a2kat.firebaseapp.com",
+      databaseURL: "https://notes-a2kat.firebaseio.com",
+      projectId: "notes-a2kat",
+      storageBucket: "notes-a2kat.appspot.com",
+      messagingSenderId: "1021439021079"
+    };
+    firebase.initializeApp(config);
+    var db = firebase.firestore();
+    db.collection("notes").add({
+      first: "Ada",
+      last: "Lovelace",
+      born: 1815
+    }).then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+    }).catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+
+    db.collection("notes").get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+      });
+    });
+
+    var p = "da";
+  </script>
+
 </head>
 
 <body>
