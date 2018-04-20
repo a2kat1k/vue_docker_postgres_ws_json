@@ -20,18 +20,13 @@ const client_id = 4571390;
 const client_seecret = 'rwUBryJiHxxqoNARgRNj';
 const redirect_uri = 'http://a2kat.crabdance.com:8081/vklogin';
 var user_id = '';
-//var user_id = 3753918;
 var photos;
 var ava;
 
 var router = express.Router();
-
 // Access the session as req.session
-
-router.get(['/index.html','/'], function (req, res, next) {
+router.get(['/index.html', '/'], function (req, res, next) {
     var sessData = req.session;
-    console.log("req: " + req.path);
-    console.log ("session_user_id: " +sessData.user_id );
     if (typeof sessData.user_id === 'undefined') {
         res.redirect('/welcome.html');
     } else {
@@ -71,7 +66,6 @@ app.get('/photos', function (req, res, next) {
 */
 
 router.get('/vklogin', function (req, res) {
-    console.log(req.query.code);
     var query = `https://oauth.vk.com/access_token?client_id=${client_id}&client_secret=${client_seecret}&redirect_uri=${redirect_uri}&code=${req.query.code}`;
     https.get(query,
         (responce) => {
@@ -108,6 +102,7 @@ router.get('/vklogin', function (req, res) {
                         });
                         resp_vk.on("end", () => {
                             body_resp = JSON.parse(photos);
+                            photos = body_resp;
                             //console.log("photos "+ JSON.stringify(body_resp));
                         });
                     }).on('error', (e) => {
@@ -124,16 +119,13 @@ router.get('/vklogin', function (req, res) {
                         resp_vk2.on("end", () => {
                             bdy = JSON.parse(photo);
                             ava = bdy;
-                            console.log("ava "+ JSON.stringify(bdy));
                         });
                     }).on('error', (e) => {
                         console.error(e);
                     });
                 sessData.photos = body_resp;
                 sessData.ava = bdy;
-                photos = body_resp;
-                
-                console.log("ava222 "+ JSON.stringify(ava));
+
                 res.redirect('/index.html');
             });
         }).on('error', function (err) {
@@ -166,17 +158,20 @@ wss.on('connection', function connection(ws) {
 
                     });
             case "ava":
-                console.log("requested AVA ");
                 var mess = {
                     action: "ava",
                     ava: ava
                 }
-                console.log("sended : " + JSON.stringify(mess) + ava);
+                ws.send(JSON.stringify(mess));
+            case "photos":
+                var mess = {
+                    action: "ava",
+                    ava: ava
+                }
                 ws.send(JSON.stringify(mess));
         }
 
 
-        console.log('[WebSocket]', 'received', mess);
     });
     console.log("before query " + user_id);
     pool.query(`select array_to_json(array_agg(row_to_json(t))) as json from (

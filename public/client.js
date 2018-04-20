@@ -20,7 +20,7 @@ const app = new Vue({
                 id: id
             }
             ws.send(JSON.stringify(mess));
-            this.notes.push({ 'note': this.message, 'commentdate': new Date(), 'id': id });
+            this.notes.push({ 'note': this.message, 'commentdate': new Date().toLocaleString('ru-RU', options).capitalize(), 'id': id });
             this.message = '';
         },
         delete_note: function (index) {
