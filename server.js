@@ -33,7 +33,7 @@ router.get(['/index.html','/'], function (req, res, next) {
     console.log ("session_user_id: " +sessData.user_id );
     if (typeof sessData.user_id !== 'undefined') {
         app.use(express.static('public'));
-        res.redirect('/index.html');
+        //res.redirect('/index.html');
     } else {
         app.use(express.static('public'));
         res.redirect('/welcome.html');
