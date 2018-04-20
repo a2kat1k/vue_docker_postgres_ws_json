@@ -1,5 +1,4 @@
 const WS_URI = `ws://${window.location.host}`;
-
 const ws = new WebSocket(WS_URI);
 
 const app = new Vue({
@@ -8,7 +7,9 @@ const app = new Vue({
         message: '',
         isReady: false,
         notes: [],
-        avatar: './kirill.jpg'
+        avatar: './kirill.jpg',
+        first_name : '',
+        images: []
     },
     methods: {
         save(value) {
@@ -64,6 +65,7 @@ ws.onmessage = (event) => {
             ws.send(JSON.stringify(mess_back));
         case "ava":
             app.$data.avatar = mess.ava["response"][0].photo_200;
+            app.$data.first_name = mess.ava["response"][0].first_name;
             var mess_back = {
                 action: "photos"
             }
@@ -78,9 +80,11 @@ ws.onmessage = (event) => {
                 if (typeof item.photo_807 !==  'undefined') { photoArray.push(item.photo_807); } else 
                 if (typeof item.photo_604 !==  'undefined') { photoArray.push(item.photo_604); }
             });
+            app.$data.images = photoArray;
+            /*
             photoArray.forEach(item => {
                 console.log(item);
-            });
+            });*/
     }
 
 
