@@ -56,7 +56,7 @@ ws.onmessage = (event) => {
         case "notes":
             console.log("received notes:" + JSON.stringify(mess.notes));
             mess.notes.forEach(element => {
-                console.log("heeeee" + element.commentdate);
+                element.commentdate = new Date(element.commentdate.replace(' ', 'T')).toLocaleString('ru-RU', options).capitalize();
             });
             app.$data.notes = eval('(' + JSON.stringify(mess.notes) + ')');
             var mess_back = {
