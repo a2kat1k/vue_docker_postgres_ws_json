@@ -89,14 +89,12 @@
       </div>
     </div>
     <h2 class="w3-center">Слушай {{first_name}}, не твои ли это фото?</h2>
-    <div class="w3-content w3-display-container">
+    <!--<div class="w3-content w3-display-container">-->
+    <div>
       <img class="mySlides" :src="image_path" v-for="(image_path,index) in images" style="width:100%">
-      <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-      <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
     </div>
   </div>
-
-  <script>
+  <!--<script>
     var slideIndex = 1;
     showDivs(slideIndex);
 
@@ -114,7 +112,8 @@
       }
       x[slideIndex - 1].style.display = "block";
     }
-  </script>
+  </script>-->
+
   <script src="client.js"></script>
 </body>
 
