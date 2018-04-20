@@ -31,7 +31,7 @@ router.get(['/index.html','/'], function (req, res, next) {
     var sessData = req.session;
     console.log("req: " + req.path);
     console.log ("session_user_id: " +sessData.user_id );
-    if (typeof sessData.user_id !== 'undefined') {З
+    if (typeof sessData.user_id !== 'undefined') {
         app.use(express.static('public'));
         res.redirect('/index.html');
     } else {
