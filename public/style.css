@@ -82,6 +82,7 @@ body {
   }
 .img-circle{
     border-radius: 50%;
+    min-height: 50x;
     height: 5vh;
 }
 .bubble{
