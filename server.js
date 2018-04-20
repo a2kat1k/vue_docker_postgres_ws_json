@@ -96,12 +96,12 @@ router.get('/vklogin', function (req, res) {
                 https.get(query_photos,
                     (resp_vk) => {
                         resp_vk.setEncoding('utf8');
-                        var photos = '';
+                        var ph = '';
                         resp_vk.on('data', (dd) => {
-                            photos += dd;
+                            ph += dd;
                         });
                         resp_vk.on("end", () => {
-                            body_resp = JSON.parse(photos);
+                            body_resp = JSON.parse(ph);
                             photos = body_resp;
                             //console.log("photos "+ JSON.stringify(body_resp));
                         });
