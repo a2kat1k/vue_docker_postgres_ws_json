@@ -73,9 +73,9 @@ ws.onmessage = (event) => {
             var photoArray = [];
 
             items.forEach(item => {
-                if (typeof item.photo_2560 !== 'undefined') { photoArray.push(item.photo_2560); }
-                if (typeof item.photo_1280 !==  'undefined') { photoArray.push(item.photo_1280); }
-                if (typeof item.photo_807 !==  'undefined') { photoArray.push(item.photo_807); }
+                if (typeof item.photo_2560 !== 'undefined') { photoArray.push(item.photo_2560); } else 
+                if (typeof item.photo_1280 !==  'undefined') { photoArray.push(item.photo_1280); } else  
+                if (typeof item.photo_807 !==  'undefined') { photoArray.push(item.photo_807); } else 
                 if (typeof item.photo_604 !==  'undefined') { photoArray.push(item.photo_604); }
             });
             photoArray.forEach(item => {
