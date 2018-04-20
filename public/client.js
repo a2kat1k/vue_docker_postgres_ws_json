@@ -35,9 +35,9 @@ const app = new Vue({
             ws.send(JSON.stringify(mess));
         },
         move: function (dir){
-            this.$refs[`image-${this.cur_photo}`].style.display = "none";
+            this.$refs[`image-${this.cur_photo}`][0].style.display = "none";
             this.cur_photo  += dir;
-            this.$refs[`image-${this.cur_photo}`].style.display = "inline";
+            this.$refs[`image-${this.cur_photo}`][0].style.display = "inline";
             
         }
     },
