@@ -56,7 +56,10 @@ ws.onmessage = (event) => {
         case "notes":
             console.log("received notes:" + JSON.stringify(mess.notes));
             app.$data.notes = eval('(' + JSON.stringify(mess.notes) + ')');
-            ws.send(JSON.stringify('{ action: "ava" }'));
+            var mess_back = {
+                action: "ava"
+            } 
+            ws.send(JSON.stringify(mess_back));
         case "ava":
         console.log("received avatar:" + JSON.stringify(mess.ava));
         app.$data.avatar = JSON.stringify(mess.ava);
