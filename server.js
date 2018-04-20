@@ -30,8 +30,8 @@ var router = express.Router();
 router.get(['/index.html','/'], function (req, res, next) {
     var sessData = req.session;
     console.log("req: " + req.path);
-    confirm.log ("session_user_id: " +sessData.user_id );
-    if (typeof sessData.user_id !== 'undefined') {
+    console.log ("session_user_id: " +sessData.user_id );
+    if (typeof sessData.user_id !== 'undefined') {З
         app.use(express.static('public'));
         res.redirect('/index.html');
     } else {
