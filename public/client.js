@@ -61,10 +61,10 @@ ws.onmessage = (event) => {
             } 
             ws.send(JSON.stringify(mess_back));
         case "ava":
-        var resp = JSON.parse(mess.ava);
+        var resp = JSON.parse(mess);
        // resp.responce.photo_200
-        console.log("received avatar:" +  resp.responce.photo_200);
-        app.$data.avatar = JSON.stringify(mess.ava);
+        console.log("received avatar:" +  resp.obj.ava["response"][0].photo_200);
+        app.$data.avatar = JSON.stringify(resp.obj.ava["response"][0].photo_200);
     }
 
 
