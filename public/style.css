@@ -64,6 +64,9 @@ body {
     overflow-y: scroll;
     height: 40vh;
     background-image: url(back.jpg);
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;  
   }
 
   ::-webkit-scrollbar-track {
