@@ -22,7 +22,7 @@ body {
 }
 
 #app {
-    margin-top : 5vh;
+    margin-top : 0vh;
 }
 
 #app input {
@@ -62,7 +62,7 @@ body {
 
   .panel-body {
     overflow-y: scroll;
-    height: 80vh;
+    height: 40vh;
     background-image: url(back.jpg);
   }
 

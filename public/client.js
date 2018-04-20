@@ -10,7 +10,7 @@ const app = new Vue({
         avatar: './kirill.jpg',
         first_name : '',
         images: [],
-        cur_photo : 1
+        cur_photo : 0
     },
     methods: {
         save(value) {
@@ -88,6 +88,7 @@ ws.onmessage = (event) => {
                 if (typeof item.photo_604 !==  'undefined') { photoArray.push(item.photo_604); }
             });
             app.$data.images = photoArray;
+            this.$refs[`image-${this.cur_photo}`][0].style.display = "inline";
             /*
             photoArray.forEach(item => {
                 console.log(item);
