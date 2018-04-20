@@ -168,7 +168,6 @@ wss.on('connection', function connection(ws) {
                     action: "photos",
                     photos: photos
                 }
-                console.log("photos = " + photos);
                 ws.send(JSON.stringify(mess));
         }
 

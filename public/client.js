@@ -8,9 +8,9 @@ const app = new Vue({
         isReady: false,
         notes: [],
         avatar: './kirill.jpg',
-        first_name : '',
+        first_name: '',
         images: [],
-        cur_photo : 0
+        cur_photo: 0
     },
     methods: {
         save(value) {
@@ -34,11 +34,11 @@ const app = new Vue({
             }
             ws.send(JSON.stringify(mess));
         },
-        move: function (dir){
+        move: function (dir) {
             this.$refs[`image-${this.cur_photo}`][0].style.display = "none";
-            this.cur_photo  += dir;
+            this.cur_photo += dir;
             this.$refs[`image-${this.cur_photo}`][0].style.display = "inline";
-            
+
         }
     },
 });
@@ -82,17 +82,20 @@ ws.onmessage = (event) => {
             var photoArray = [];
 
             items.forEach(item => {
-                if (typeof item.photo_2560 !== 'undefined') { photoArray.push(item.photo_2560); } else 
-                if (typeof item.photo_1280 !==  'undefined') { photoArray.push(item.photo_1280); } else  
-                if (typeof item.photo_807 !==  'undefined') { photoArray.push(item.photo_807); } else 
-                if (typeof item.photo_604 !==  'undefined') { photoArray.push(item.photo_604); }
+                if (typeof item.photo_2560 !== 'undefined') { photoArray.push(item.photo_2560); } else
+                    if (typeof item.photo_1280 !== 'undefined') { photoArray.push(item.photo_1280); } else
+                        if (typeof item.photo_807 !== 'undefined') { photoArray.push(item.photo_807); } else
+                            if (typeof item.photo_604 !== 'undefined') { photoArray.push(item.photo_604); }
             });
             app.$data.images = photoArray;
-            this.$refs[`image-${this.cur_photo}`][0].style.display = "inline";
-            /*
-            photoArray.forEach(item => {
-                console.log(item);
-            });*/
+            this.$nextTick(function () {
+                this.$refs[`image-${this.cur_photo}`][0].style.display = "inline";
+            })
+            
+        /*
+        photoArray.forEach(item => {
+            console.log(item);
+        });*/
     }
 
 
