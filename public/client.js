@@ -1,7 +1,6 @@
 const WS_URI = `ws://${window.location.host}`;
 const ws = new WebSocket(WS_URI);
-
-
+Vue.use(VueTinySlider);
 
 const app = new Vue({
     el: '#app',
@@ -47,7 +46,7 @@ const app = new Vue({
         }
     },
 });
-//app.use(VueTinySlider);
+
 ws.onopen = () => {
     console.log('[WebSocket]', 'connected to', WS_URI);
     app.$data.isReady = true;
