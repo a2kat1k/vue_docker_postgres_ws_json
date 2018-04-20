@@ -67,7 +67,7 @@ app.get('/photos', function (req, res, next) {
 });
 */
 
-app.get('/vklogin', function (req, res) {
+router.get('/vklogin', function (req, res) {
     console.log(req.query.code);
     var query = `https://oauth.vk.com/access_token?client_id=${client_id}&client_secret=${client_seecret}&redirect_uri=${redirect_uri}&code=${req.query.code}`;
     console.log(query);
