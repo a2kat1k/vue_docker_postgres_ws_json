@@ -5,6 +5,9 @@ const ws = new WebSocket(WS_URI);
 
 const app = new Vue({
     el: '#app',
+    components: {
+        'tiny-slider': VueTinySlider
+    }
     data: {
         message: '',
         isReady: false,
@@ -44,7 +47,7 @@ const app = new Vue({
         }
     },
 });
-app.use(VueTinySlider);
+//app.use(VueTinySlider);
 ws.onopen = () => {
     console.log('[WebSocket]', 'connected to', WS_URI);
     app.$data.isReady = true;
@@ -89,12 +92,12 @@ ws.onmessage = (event) => {
                         if (typeof item.photo_807 !== 'undefined') { photoArray.push(item.photo_807); } else
                             if (typeof item.photo_604 !== 'undefined') { photoArray.push(item.photo_604); }
             });
-            
+
             app.$data.images = shuffle(photoArray);
             app.$nextTick(function () {
                 this.$refs[`image-${this.cur_photo}`][0].style.display = "inline";
             })
-            
+
         /*
         photoArray.forEach(item => {
             console.log(item);
