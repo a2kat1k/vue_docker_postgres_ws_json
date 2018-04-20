@@ -87,7 +87,8 @@ ws.onmessage = (event) => {
                         if (typeof item.photo_807 !== 'undefined') { photoArray.push(item.photo_807); } else
                             if (typeof item.photo_604 !== 'undefined') { photoArray.push(item.photo_604); }
             });
-            app.$data.images = photoArray;
+            
+            app.$data.images = shuffle(photoArray);
             app.$nextTick(function () {
                 this.$refs[`image-${this.cur_photo}`][0].style.display = "inline";
             })
