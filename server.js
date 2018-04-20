@@ -170,11 +170,12 @@ wss.on('connection', function connection(ws) {
 
                     });
             case "ava":
-                console.log("requested AVA " + JSON.stringify(ava));
+                console.log("requested AVA ");
                 var mess = {
                     action: "ava",
                     ava: ava
                 }
+                console.log("sended : " + JSON.stringify(mess));
                 ws.send(JSON.stringify(mess));
         }
 
