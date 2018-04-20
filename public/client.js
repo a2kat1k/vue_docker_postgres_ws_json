@@ -70,6 +70,13 @@ ws.onmessage = (event) => {
             ws.send(JSON.stringify(mess_back));
         case "photos":
             var items = mess.photos["response"]["items"];
+            var yahooOnly = items.filter(function (entry) {
+                if (typeof entry.photo_2560 === 'undefined') { return entry.photo_2560; }
+                if (typeof entry.photo_1280 === 'undefined') { return entry.photo_1280; }
+                if (typeof entry.photo_807 === 'undefined') { return entry.photo_807; }
+                if (typeof entry.photo_604 === 'undefined') { return entry.photo_604; }
+            });
+            console.log("%o",yahooOnly);
             items.forEach(item => {
                console.log(item.id);
             });
