@@ -89,7 +89,7 @@
     <h2 class="w3-center">Слушай {{first_name}}, не твои ли это фото?</h2>
     <!--<div class="w3-content w3-display-container">-->
     <div id="gallery">
-      <img class="mySlides" :src="image_path" v-for="(image_path,index) in images" style="width:100%;display:none;" :ref=`image-${index}`>
+      <img class="mySlides" :src="image_path" v-for="(image_path,index) in images" style="width:100%;display:none;" :ref="'image-'+index">
       <button class="w3-button w3-black w3-display-left" v-on:click="move(-1)">&#10094;</button>
       <button class="w3-button w3-black w3-display-right" v-on:click="move(1)">&#10095;</button>
     </div>
