@@ -175,7 +175,7 @@ wss.on('connection', function connection(ws) {
                     action: "ava",
                     ava: ava
                 }
-                console.log("sended : " + JSON.stringify(mess));
+                console.log("sended : " + JSON.stringify(mess) + ava);
                 ws.send(JSON.stringify(mess));
         }
 
