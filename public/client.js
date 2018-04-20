@@ -9,7 +9,8 @@ const app = new Vue({
         notes: [],
         avatar: './kirill.jpg',
         first_name : '',
-        images: []
+        images: [],
+        cur_photo : 1
     },
     methods: {
         save(value) {
@@ -32,6 +33,12 @@ const app = new Vue({
                 id: itemId
             }
             ws.send(JSON.stringify(mess));
+        },
+        move: function (dir){
+            this.$refs[`image-${this.cur_photo}`].style.display = "none";
+            this.cur_photo  += dir;
+            this.$refs[`image-${this.cur_photo}`].style.display = "inline";
+            
         }
     },
 });
