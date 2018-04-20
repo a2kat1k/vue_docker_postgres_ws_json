@@ -165,8 +165,8 @@ wss.on('connection', function connection(ws) {
                 ws.send(JSON.stringify(mess));
             case "photos":
                 var mess = {
-                    action: "ava",
-                    ava: ava
+                    action: "photos",
+                    photos: photos
                 }
                 ws.send(JSON.stringify(mess));
         }
