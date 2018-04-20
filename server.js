@@ -28,24 +28,18 @@ var router = express.Router();
 
 // Access the session as req.session
 
-router.get('/', function (req, res, next) {
+router.get(['/index.html','/'], function (req, res, next) {
     var sessData = req.session;
     console.log("req: " + req.path);
     console.log ("session_user_id: " +sessData.user_id );
-    if (typeof sessData.user_id !== 'undefined') {
-        app.use(express.static('public'));
-        res.redirect('/index.html');
-    } else {
-        app.use(express.static('public'));
+    if (typeof sessData.user_id === 'undefined') {
         res.redirect('/welcome.html');
+    } else {
+        next();
     }
 });
-/*
-router.get('*',function (req, res, next) {
-    app.use(express.static('public'));
-    next();
-});*/
 app.use(router);
+app.use(express.static('public'));
 
 /*
 function loadUser(req, res, next) {
