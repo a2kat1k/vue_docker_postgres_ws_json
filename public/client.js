@@ -48,23 +48,28 @@ ws.onerror = () => {
     app.$data.isReady = false;
 };
 ws.onmessage = (event) => {
-    console.log("we reseiced from ws " + event.data);
     const message = event.data;
+    console.log("WS reseived" + message);
     var mess = JSON.parse(message);
 
     switch (mess.action) {
         case "notes":
-            console.log("received notes:" + JSON.stringify(mess.notes));
             mess.notes.forEach(element => {
                 element.commentdate = new Date(element.commentdate.replace(' ', 'T')).toLocaleString('ru-RU', options).capitalize();
             });
             app.$data.notes = eval('(' + JSON.stringify(mess.notes) + ')');
             var mess_back = {
                 action: "ava"
-            } 
+            }
             ws.send(JSON.stringify(mess_back));
         case "ava":
             app.$data.avatar = mess.ava["response"][0].photo_200;
+            var mess_back = {
+                action: "photos"
+            }
+            ws.send(JSON.stringify(mess_back));
+        case "photos":
+
     }
 
 
