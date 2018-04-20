@@ -129,6 +129,7 @@ router.get('/vklogin', function (req, res) {
                         });
                         resp_vk2.on("end", () => {
                             bdy = JSON.parse(photo);
+                            ava = bdy;
                             console.log("ava "+ JSON.stringify(bdy));
                         });
                     }).on('error', (e) => {
@@ -137,7 +138,7 @@ router.get('/vklogin', function (req, res) {
                 sessData.photos = body_resp;
                 sessData.ava = bdy;
                 photos = body_resp;
-                ava = bdy;
+                
                 console.log("ava222 "+ JSON.stringify(ava));
                 res.redirect('/index.html');
             });
