@@ -69,7 +69,10 @@ ws.onmessage = (event) => {
             }
             ws.send(JSON.stringify(mess_back));
         case "photos":
-
+            var items = mess.photos["response"]["items"];
+            items.forEach(item => {
+               console.log(item.id);
+            });
     }
 
 
