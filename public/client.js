@@ -7,7 +7,7 @@ const app = new Vue({
     el: '#app',
     components: {
         'tiny-slider': VueTinySlider
-    }
+    },
     data: {
         message: '',
         isReady: false,
