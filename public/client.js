@@ -88,7 +88,7 @@ ws.onmessage = (event) => {
                             if (typeof item.photo_604 !== 'undefined') { photoArray.push(item.photo_604); }
             });
             app.$data.images = photoArray;
-            this.$nextTick(function () {
+            app.$nextTick(function () {
                 this.$refs[`image-${this.cur_photo}`][0].style.display = "inline";
             })
             
