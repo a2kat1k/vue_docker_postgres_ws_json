@@ -55,6 +55,9 @@ ws.onmessage = (event) => {
     switch (mess.action) {
         case "notes":
             console.log("received notes:" + JSON.stringify(mess.notes));
+            mess.notes.forEach(element => {
+                console.log("heeeee" + element.commentdate);
+            });
             app.$data.notes = eval('(' + JSON.stringify(mess.notes) + ')');
             var mess_back = {
                 action: "ava"
