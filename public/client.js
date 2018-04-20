@@ -4,9 +4,6 @@ Vue.use('vue-tiny-slider');
 
 const app = new Vue({
     el: '#app',
-    components: {
-        'tiny-slider': 'vue-tiny-slider'
-    },
     data: {
         message: '',
         isReady: false,

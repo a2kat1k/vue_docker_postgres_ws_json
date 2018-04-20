@@ -93,14 +93,14 @@
       <button class="w3-button w3-black w3-display-left" v-on:click="move(-1)">&#10094;</button>
       <button class="w3-button w3-black w3-display-right" v-on:click="move(1)">&#10095;</button>
     </div>
-    <tiny-slider :mouse-drag="true" :loop="false" items="2" gutter="20">
+    <vue-tiny-slider :mouse-drag="true" :loop="false" items="2" gutter="20">
         <div>Slider item #1</div>
         <div>Slider item #2</div>
         <div>Slider item #3</div>
         <div>Slider item #4</div>
         <div>Slider item #5</div>
         <div>Slider item #6</div>
-      </tiny-slider>
+      </vue-tiny-slider>
   </div>
   <script>
     function shuffle(array) {
