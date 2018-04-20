@@ -1,11 +1,11 @@
 const WS_URI = `ws://${window.location.host}`;
 const ws = new WebSocket(WS_URI);
-Vue.use(VueTinySlider);
+Vue.use('vue-tiny-slider');
 
 const app = new Vue({
     el: '#app',
     components: {
-        'tiny-slider': VueTinySlider
+        'tiny-slider': 'vue-tiny-slider'
     },
     data: {
         message: '',
