@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link rel="stylesheet" href="style.css" />
-
+  <!--
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
@@ -40,11 +40,10 @@
         console.log(doc.id, " => ", doc.data());
       });
     });
-
-    String.prototype.capitalize = function () {
-      return this.charAt(0).toUpperCase() + this.slice(1);
-    }
-    // Запрашиваем день недели вместе с длинным форматом даты
+  </script>
+-->
+  <script>
+    String.prototype.capitalize = function () { return this.charAt(0).toUpperCase() + this.slice(1); }
     var options = { weekday: 'long', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
   </script>
 
