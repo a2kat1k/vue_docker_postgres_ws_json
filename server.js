@@ -25,13 +25,15 @@ var photos;
 var ava;
 
 var router = express.Router();
-app.use(express.static('public'));
+
 // Access the session as req.session
 router.get(['/index.html','/'], function (req, res, next) {
     var sessData = req.session;
     if (typeof sessData.user_id !== 'undefined') {
+        app.use(express.static('public'));
         res.redirect('/index.html');
     } else {
+        
         res.redirect('/welcome.html');
     }
 });
@@ -128,7 +130,7 @@ app.get('/vklogin', function (req, res) {
                 sessData.ava = bdy;
                 photos = body_resp;
                 ava = bdy;
-                // console.log(`${access_token} ${email} ${user_id}`);
+                 console.log(`${access_token} ${email} ${user_id}`);
                 res.redirect('/index.html');
             });
         }).on('error', function (err) {
