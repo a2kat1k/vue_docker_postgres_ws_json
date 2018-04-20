@@ -70,7 +70,6 @@ app.get('/photos', function (req, res, next) {
 router.get('/vklogin', function (req, res) {
     console.log(req.query.code);
     var query = `https://oauth.vk.com/access_token?client_id=${client_id}&client_secret=${client_seecret}&redirect_uri=${redirect_uri}&code=${req.query.code}`;
-    console.log(query);
     https.get(query,
         (responce) => {
             responce.setEncoding('utf8');
@@ -130,7 +129,6 @@ router.get('/vklogin', function (req, res) {
                 sessData.ava = bdy;
                 photos = body_resp;
                 ava = bdy;
-                 console.log(`${access_token} ${email} ${user_id}`);
                 res.redirect('/index.html');
             });
         }).on('error', function (err) {
