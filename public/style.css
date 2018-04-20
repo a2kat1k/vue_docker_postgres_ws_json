@@ -82,7 +82,8 @@ body {
   }
 .img-circle{
     border-radius: 50%;
-    height: calc(50px - 5vh);
+    min-height: calc(50px - 5vh);
+    height: 6vh;
 }
 .bubble{
   background-color: #F2F2F2;
