@@ -93,6 +93,7 @@ body {
   padding: 10px 18px;
   position: relative;
   vertical-align: top;
+  margin-left: 9px;
 }
 
 .bubble::before {
