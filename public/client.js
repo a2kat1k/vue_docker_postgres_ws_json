@@ -1,6 +1,8 @@
 const WS_URI = `ws://${window.location.host}`;
 const ws = new WebSocket(WS_URI);
 
+Vue.use(VueTinySlider);
+
 const app = new Vue({
     el: '#app',
     data: {
