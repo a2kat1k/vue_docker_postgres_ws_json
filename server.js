@@ -33,6 +33,9 @@ router.get(['/index.html', '/'], function (req, res, next) {
         next();
     }
 });
+router.get(['/example'], function (req, res, next) {
+   res.redirect('/example.html');
+});
 app.use(router);
 app.use(express.static('public'));
 
